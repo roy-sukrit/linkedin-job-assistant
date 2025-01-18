@@ -32,6 +32,12 @@ BUCKET_NAME = os.getenv("BUCKET_NAME")  # Replace with your bucket name
 PDF_FOLDER = "pdfs/"  # Folder inside the bucket to store PDFs
 UPLOAD_FOLDER = "/tmp"  # Temporary folder for storing files
 
+
+@app.route("/")
+def home():
+    return "API is running!"
+
+
 @app.route('/generate-resume', methods=['POST'])
 def generate_resume():
     try:
@@ -172,5 +178,5 @@ def convert_tex_to_pdf():
     except Exception as e:
         return jsonify({"error": "An error occurred", "details": str(e)}), 500
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080,debug=True)
+# if __name__ == "__main__":
+#     app.run(host="0.0.0.0", port=8080,debug=True)
